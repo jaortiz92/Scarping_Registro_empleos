@@ -25,9 +25,12 @@ def balance_cities(city, city2):
     j = 0
     departamento = []
     for i in city:
-        if i in ciudades:
+        if (i in ciudades) & (j < len(city2)):
             departamento.append(city2[j])
             j += 1
+        elif j >= len(city2)-1:
+            departamento.append("")
+            print('Error de Ciudad')
         else:
             departamento.append(i)
     return departamento
@@ -46,6 +49,7 @@ def extract_data(parsed):
     vacantes = []
     if len(city) > len(city2):
         city2 = balance_cities(city, city2)
+    
     for i in range(len(link)):
         vacantes.append([name[i], date[i], company[i], link[i], summary[i], source[i], city[i], city2[i]])
     return vacantes
